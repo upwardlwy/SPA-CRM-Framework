@@ -1,0 +1,117 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height,user-scalable=no">
+    <title>CRM</title>
+    <link rel="stylesheet" href="css/foundation.min.css" />
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+    <!--left Menu-->
+    <div class="large-2 columns">
+        <div>
+        	<img src="images/logo.png"/>
+        </div>
+        
+        <ul class="menu-list">
+            <li data-icon="work-summary1" data-code="work-summary" class="selected">
+                <img src="images/work-plan.png" />
+                <span>工作总结ONE</span>
+            </li>
+            <li data-icon="work-summary1" data-code="work-plan">
+                <img src="images/work-summary.png" />
+                <span>工作计划ONE</span>
+            </li>
+            <li data-icon="work-summary1" data-code="work-summary">
+                <img src="images/work-plan.png" />
+                <span>工作总结TWO</span>
+            </li>
+            <li data-icon="work-summary1" data-code="work-plan">
+                <img src="images/work-summary.png" />
+                <span>工作计划TWO</span>
+            </li>
+        </ul>
+    </div>
+
+    <!--right content-->
+    <div class="large-10 columns content"> </div>
+
+<!--footer-->
+<!-- <footer class=""> -->
+<!--     <div class="large-12 columns"> -->
+<!--         <hr/> -->
+<!--         <div class="row"> -->
+<!--             <div class="large-6 columns"> -->
+<!--                 <p>© Copyright no one at all. Go to town.</p> -->
+<!--             </div> -->
+<!--             <div class="large-6 columns"> -->
+<!--                 <ul class="inline-list right"> -->
+<!--                     <li><a href="#">Section 1</a></li> -->
+<!--                     <li><a href="#">Section 2</a></li> -->
+<!--                     <li><a href="#">Section 3</a></li> -->
+<!--                     <li><a href="#">Section 4</a></li> -->
+<!--                 </ul> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </div> -->
+<!-- </footer> -->
+</body>
+<script src="js/jquery.js"></script>
+
+<script type="text/javascript">
+$(function(){
+    var code = $(".menu-list .selected").attr("data-code");
+    var selectedLi = $(".menu-list .selected");
+
+    selectedLi.css({
+    	background:"#16171c",
+    	color:"#ecedf1"
+    });
+
+    selectedLi.find("img").attr("src","images/" + code + "1.png");
+
+    $.ajax({
+        url: code + ".html",
+        type:"get",
+        data:{
+            code:code
+        },
+        dataType:"html",
+        success:function(data){
+            $(".content").html(data)
+        }
+    });
+
+    $(".menu-list li").click(function(){
+        if($(this).hasClass("selected")==false){
+            $(this).addClass("selected").css({
+                background:"#16171c",
+                color:"#ecedf1"
+            }).siblings().removeClass("selected").css({
+                background:"#202028",
+                color:"#71747b"
+            });
+
+            var code = $(this).attr("data-code");
+            $(".menu-list li").each(function(){
+            	$(this).find("img").attr("src","images/" +$(this).attr("data-code")+ ".png");
+            });
+
+            $(this).find("img").attr("src","images/" +$(this).attr("data-icon") + ".png");
+            
+            $.ajax({
+                url:code + ".html",
+                type:"get",
+                dataType:"html",
+                success:function(data){
+                    $(".content").html(data);
+                }
+            })
+        }
+    });
+});
+
+</script>
+</html>

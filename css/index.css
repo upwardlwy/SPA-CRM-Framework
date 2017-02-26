@@ -1,0 +1,56 @@
+html, body, p, h1, table, ul, li, div, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+}
+
+body, html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+    width: 100%;
+    font-family: "Microsoft Himalaya";
+    overflow: auto;
+}
+
+.columns {
+	background: #000;
+	height: 100%;
+}
+
+/* Menu */
+.menu-list{
+	background: #202126;
+	list-style: none;
+	width: 100%;
+	margin-top: 1rem;
+}
+
+.menu-list li {
+	line-height: 3.8rem;
+	padding: 0 1.3rem;
+	color: #6f6f79;
+	font-size: .95rem;
+}
+
+.menu-list li img {
+	width: 1.2rem;
+	vertical-align: middle;
+}
+
+.menu-list li:hover {
+	cursor: pointer;
+}
+
+.menu-list > span{
+	margin-left: 1.5rem;
+	vertical-align: middle;
+}
+
+/* Right */
+.content {
+	background: #f0f1f3;
+	border-top: 2px solid #131217;
+	border-right: 2px solid #131217;
+}
